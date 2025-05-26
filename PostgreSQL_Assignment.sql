@@ -115,3 +115,13 @@ SELECT sighting_id,
        END AS time_of_day
 FROM sightings
 ORDER BY sighting_id;
+
+
+
+-- Problem 9: Delete rangers who have never sighted any species
+DELETE FROM rangers r
+WHERE NOT EXISTS (
+    SELECT 1
+    FROM sightings s
+    WHERE s.ranger_id = r.ranger_id
+);
